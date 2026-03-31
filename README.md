@@ -18,10 +18,6 @@
   <sup>1</sup><a href="https://intellindust-ai-lab.github.io/">Intellindust AI Lab</a> &nbsp;&nbsp; <sup>2</sup>Suzhou Institute for Advanced Research, USTC
 </p>
 
-<p align="center">
-<img src="./assets/hed.png" width="90%" alt="HED figure">
-</p>
-
 ---
 
 ## 🔍 TL;DR
@@ -31,6 +27,10 @@
 - This repository includes:
   - Training/evaluation code and configs for CD-FSOD, ODinW-13, and RF100-VL benchmarks.
   - A challenge subproject: [NTIRE 2026 CDFSOD Challenge](./NTIRE%202026%20CDFSOD%20Challenge%20/README.md), including pseudo-label annotation strategy and challenge-oriented pipeline details.
+
+<p align="center">
+<img src="./assets/hed.png" width="90%" alt="HED figure">
+</p>
 
 ---
 
@@ -55,10 +55,10 @@ mim install mmdet
 pip install -r requirements.txt
 ```
 
-<sub><b>Deterministic hack (MMEngine):</b> to reduce few-shot training instability, we set `deterministic=True` in configs, which needs to patch MMEngine as follows:<br></sub>
-<sub>1) `mmengine/runner/runner.py` (`set_randomness`): add `warn_only: bool = True` and pass `warn_only=warn_only` to `set_random_seed`.<br></sub>
-<sub>2) `mmengine/runner/utils.py` (`set_random_seed`): add `warn_only: bool = True`, and change to `torch.use_deterministic_algorithms(True, warn_only=warn_only)`.<br></sub>
-<sub>Refs: <a href="https://github.com/open-mmlab/mmengine/blob/main/mmengine/runner/runner.py#L698">runner.py#L698</a>, <a href="https://github.com/open-mmlab/mmengine/blob/main/mmengine/runner/runner.py#L719">runner.py#L719</a>, <a href="https://github.com/open-mmlab/mmengine/blob/main/mmengine/runner/utils.py#L48">utils.py#L48</a>, <a href="https://github.com/open-mmlab/mmengine/blob/main/mmengine/runner/utils.py#L90">utils.py#L90</a>.</sub>
+<small><b>Deterministic hack (MMEngine):</b> to reduce few-shot training instability, we set `deterministic=True` in configs, which needs to patch MMEngine as follows:<br></small>
+<small>1) `mmengine/runner/runner.py` (`set_randomness`): add `warn_only: bool = True` and pass `warn_only=warn_only` to `set_random_seed`.<br></small>
+<small>2) `mmengine/runner/utils.py` (`set_random_seed`): add `warn_only: bool = True`, and change to `torch.use_deterministic_algorithms(True, warn_only=warn_only)`.<br></small>
+<small>Refs: <a href="https://github.com/open-mmlab/mmengine/blob/main/mmengine/runner/runner.py#L698">runner.py#L698</a>, <a href="https://github.com/open-mmlab/mmengine/blob/main/mmengine/runner/runner.py#L719">runner.py#L719</a>, <a href="https://github.com/open-mmlab/mmengine/blob/main/mmengine/runner/utils.py#L48">utils.py#L48</a>, <a href="https://github.com/open-mmlab/mmengine/blob/main/mmengine/runner/utils.py#L90">utils.py#L90</a>.</small>
 
 ---
 
@@ -78,7 +78,7 @@ pip install -r requirements.txt
 - **RF100-VL (10-shot):** `bash run_mmgdinol_traineval_rf100vl.sh`
 - **CD-Mixed OOD evaluation (1/5/10-shot):** `bash run_mmgdinob_eval_cdmixed.sh`
 
-<sub><i>Due to the instability of few-shot fine-tuning (even if the random seed is fixed), the results will be slightly different from the ones in the paper. </i></sub>
+<small><i>Due to the instability of few-shot fine-tuning (even if the random seed is fixed), the results will be slightly different from the ones in the paper. </i></small>
 
 
 ## 🏁 NTIRE 2026 CDFSOD Challenge
