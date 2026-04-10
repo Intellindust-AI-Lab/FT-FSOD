@@ -42,8 +42,8 @@ conda create -n ft-fsod python=3.10 -y
 conda activate ft-fsod
 
 # Install PyTorch first (pick the command matching your CUDA)
-# Example for CUDA 12.1
-pip install torch torchvision --index-url https://download.pytorch.org/whl/cu121
+# Example for CUDA 12.4
+pip install torch==2.6.0 torchvision==0.21.0 --index-url https://download.pytorch.org/whl/cu124
 
 # Install OpenMMLab dependencies
 pip install -U openmim

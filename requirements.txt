@@ -1,0 +1,13 @@
+# FT-FSOD common Python dependencies
+#
+# Install order (as in README):
+# 1) Install PyTorch with the CUDA wheel matching your environment.
+# 2) Install OpenMMLab stack via openmim (mmengine / mmcv / mmdet).
+# 3) Install this file.
+
+# Core scientific stack
+scipy==1.15.3
+
+# Language branch (GroundingDINO/GLIP text encoder and parser)
+transformers==4.57.1
+sentencepiece==0.2.0
