@@ -1,22 +1,11 @@
-<h1 align="center">A Closer Look at Cross-Domain Few-Shot Object Detection:<br>Fine-Tuning Matters and Parallel Decoder Helps</h1>
+# A Closer Look at Cross-Domain Few-Shot Object Detection:  
+Fine-Tuning Matters and Parallel Decoder Helps
 
-<p align="center">
-  <a href="https://intellindust-ai-lab.github.io/projects/FT-FSOD/"><img src="https://img.shields.io/badge/Webpage-FT--FSOD-blue.svg" alt="Webpage"></a>
-  <a href="https://arxiv.org/abs/2603.28182"><img src="https://img.shields.io/badge/arXiv-2603.28182-b31b1b.svg" alt="arXiv"></a>
-  <a href="./LICENSE"><img src="https://img.shields.io/badge/License-Apache%202.0-green.svg" alt="License"></a>
-</p>
 
-<p align="center">
-  <a href="https://xuanlong-yu.github.io/">Xuanlong Yu</a><sup>1</sup>,
-  Youyang Sha<sup>1</sup>,
-  <a href="https://capsule2077.github.io/">Longfei Liu</a><sup>1</sup>,
-  <a href="https://xishen0220.github.io/">Xi Shen</a><sup>† 1</sup>,
-  <a href="https://walker1126.github.io/">Di Yang</a><sup>† 2</sup>
-</p>
 
-<p align="center">
-  <sup>1</sup><a href="https://intellindust-ai-lab.github.io/">Intellindust AI Lab</a> &nbsp;&nbsp; <sup>2</sup>Suzhou Institute for Advanced Research, USTC
-</p>
+[Xuanlong Yu](https://xuanlong-yu.github.io/)1, Youyang Sha1, [Longfei Liu](https://capsule2077.github.io/)1, [Xi Shen](https://xishen0220.github.io/)† 1, [Di Yang](https://walker1126.github.io/)† 2
+
+1[Intellindust AI Lab](https://intellindust-ai-lab.github.io/)    2Suzhou Institute for Advanced Research, USTC
 
 ---
 
@@ -28,14 +17,12 @@
   - Training/evaluation code and configs for CD-FSOD, ODinW-13, and RF100-VL benchmarks.
   - A challenge subproject: [NTIRE 2026 CDFSOD Challenge](./NTIRE%202026%20CDFSOD%20Challenge%20/README.md), including pseudo-label annotation strategy and challenge-oriented pipeline details.
 
-<p align="center">
-<img src="./assets/hed.png" width="90%" alt="HED figure">
-</p>
+
 
 ---
 
-
 ## 📦 Installation
+
 ```bash
 # Create conda environment
 conda create -n ft-fsod python=3.10 -y
@@ -55,31 +42,36 @@ mim install mmdet
 pip install -r requirements.txt
 ```
 
-<small><b>Deterministic hack (MMEngine):</b> to reduce few-shot training instability, we set `deterministic=True` in configs, which needs to patch MMEngine as follows:<br></small>
-<small>1) `mmengine/runner/runner.py` (`set_randomness`): add `warn_only: bool = True` and pass `warn_only=warn_only` to `set_random_seed`.<br></small>
-<small>2) `mmengine/runner/utils.py` (`set_random_seed`): add `warn_only: bool = True`, and change to `torch.use_deterministic_algorithms(True, warn_only=warn_only)`.<br></small>
-<small>Refs: <a href="https://github.com/open-mmlab/mmengine/blob/main/mmengine/runner/runner.py#L698">runner.py#L698</a>, <a href="https://github.com/open-mmlab/mmengine/blob/main/mmengine/runner/runner.py#L719">runner.py#L719</a>, <a href="https://github.com/open-mmlab/mmengine/blob/main/mmengine/runner/utils.py#L48">utils.py#L48</a>, <a href="https://github.com/open-mmlab/mmengine/blob/main/mmengine/runner/utils.py#L90">utils.py#L90</a>.</small>
+**Deterministic hack (MMEngine):** to reduce few-shot training instability, we set `deterministic=True` in configs, which needs to patch MMEngine as follows:  
+
+1) `mmengine/runner/runner.py` (`set_randomness`): add `warn_only: bool = True` and pass `warn_only=warn_only` to `set_random_seed`.  
+
+2) `mmengine/runner/utils.py` (`set_random_seed`): add `warn_only: bool = True`, and change to `torch.use_deterministic_algorithms(True, warn_only=warn_only)`.  
+
+Refs: [runner.py#L698](https://github.com/open-mmlab/mmengine/blob/main/mmengine/runner/runner.py#L698), [runner.py#L719](https://github.com/open-mmlab/mmengine/blob/main/mmengine/runner/runner.py#L719), [utils.py#L48](https://github.com/open-mmlab/mmengine/blob/main/mmengine/runner/utils.py#L48), [utils.py#L90](https://github.com/open-mmlab/mmengine/blob/main/mmengine/runner/utils.py#L90).
 
 ---
 
-
 ## 📍 Fine-tuning on Benchmarks
+
 #### 1) Download bert-base-uncased, pre-trained weights and train models
 
 - Download bert-base-uncased and nltk_data following this [instruction](bert-base-uncased)
-
 - Download pre-trained weight from: [MMGDINO-B](https://download.openmmlab.com/mmdetection/v3.0/mm_grounding_dino/grounding_dino_swin-b_pretrain_all/grounding_dino_swin-b_pretrain_all-f9818a7c.pth) and [MMGDINO-L](https://download.openmmlab.com/mmdetection/v3.0/mm_grounding_dino/grounding_dino_swin-l_pretrain_all/grounding_dino_swin-l_pretrain_all-56d69e78.pth)
-
 - Adjust the dataset path and pre-trained weight path in `src_path.py`
 
 #### 2) Run the following scripts to fine-tune the models on various benchmarks
+
 - **CD-FSOD (1/5/10-shot train+eval):** `bash run_mmgdinob_traineval_cdfsod.sh`
 - **ODinW-13 (1/3/5/10-shot, multi-seed):** `bash run_mmgdinol_traineval_odwin.sh`
 - **RF100-VL (10-shot):** `bash run_mmgdinol_traineval_rf100vl.sh`
-- **CD-Mixed OOD evaluation (1/5/10-shot):** `bash run_mmgdinob_eval_cdmixed.sh`
 
-<small><i>Due to the instability of few-shot fine-tuning (even if the random seed is fixed), the results will be slightly different from the ones in the paper. </i></small>
+*Due to the instability of few-shot fine-tuning (even if the random seed is fixed), the results will be slightly different from the ones in the paper.*
 
+#### 3) Run the following scripts to create CD-Mixed test set and evaluate your CD-FSOD fine-tuned models on it
+
+- **Create CD-Mixed test set:** `bash create_cdmixed_set.sh`
+- **CD-Mixed evaluation (1/5/10-shot):** `bash run_mmgdinob_eval_cdmixed.sh`
 
 ## 🏁 NTIRE 2026 CDFSOD Challenge
 
@@ -87,7 +79,6 @@ Challenge materials and instructions are in the same repository: [NTIRE 2026 CDF
 It includes our challenge-oriented pipeline, such as pseudo-label annotation strategy using FSOD-mAP as the evaluation metric for annotation selection, model fine-tuning and TTAs.
 
 ---
-
 
 ## 📊 Result Aggregation
 

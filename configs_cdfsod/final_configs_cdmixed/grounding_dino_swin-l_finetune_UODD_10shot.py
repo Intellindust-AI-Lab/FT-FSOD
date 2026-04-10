@@ -1,6 +1,6 @@
 _base_ = '../grounding_dino_swin-b_pretrain_all.py'
 import os
-from src_path import CDFSOD_PATH, MMGDINOB_PATH
+from src_path import CDFSOD_PATH, CDMixed_PATH, MMGDINOB_PATH
 
 os.environ['CUBLAS_WORKSPACE_CONFIG'] = ':4096:8'
 randomness = dict(
@@ -14,7 +14,7 @@ randomness = dict(
 class_name = 'UODD'
 data_root = f'{CDFSOD_PATH}/{class_name}'
 
-fp_data_root = f'{CDFSOD_PATH}/ArTaxOr_mix_NEUDET_UODD_clipart_DIOR'
+fp_data_root = f'{CDMixed_PATH}'
 class_name_list = [
     "seacucumber", 
     "seaurchin", 
