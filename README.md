@@ -1,11 +1,22 @@
-# A Closer Look at Cross-Domain Few-Shot Object Detection:  
-Fine-Tuning Matters and Parallel Decoder Helps
+<h1 align="center">A Closer Look at Cross-Domain Few-Shot Object Detection:<br>Fine-Tuning Matters and Parallel Decoder Helps</h1>
 
+<p align="center">
+  <a href="https://intellindust-ai-lab.github.io/projects/FT-FSOD/"><img src="https://img.shields.io/badge/Webpage-FT--FSOD-blue.svg" alt="Webpage"></a>
+  <a href="https://arxiv.org/abs/2603.28182"><img src="https://img.shields.io/badge/arXiv-2603.28182-b31b1b.svg" alt="arXiv"></a>
+  <a href="./LICENSE"><img src="https://img.shields.io/badge/License-Apache%202.0-green.svg" alt="License"></a>
+</p>
 
+<p align="center">
+  <a href="https://xuanlong-yu.github.io/">Xuanlong Yu</a><sup>1</sup>,
+  <a href="https://openreview.net/profile?id=%7EYouyang_Sha1">Youyang Sha</a><sup>1</sup>,
+  <a href="https://capsule2077.github.io/">Longfei Liu</a><sup>1</sup>,
+  <a href="https://xishen0220.github.io/">Xi Shen</a><sup>† 1</sup>,
+  <a href="https://walker1126.github.io/">Di Yang</a><sup>† 2</sup>
+</p>
 
-[Xuanlong Yu](https://xuanlong-yu.github.io/)1, Youyang Sha1, [Longfei Liu](https://capsule2077.github.io/)1, [Xi Shen](https://xishen0220.github.io/)† 1, [Di Yang](https://walker1126.github.io/)† 2
-
-1[Intellindust AI Lab](https://intellindust-ai-lab.github.io/)    2Suzhou Institute for Advanced Research, USTC
+<p align="center">
+  <sup>1</sup><a href="https://intellindust-ai-lab.github.io/">Intellindust AI Lab</a> &nbsp;&nbsp; <sup>2</sup>Suzhou Institute for Advanced Research, USTC
+</p>
 
 ---
 
@@ -17,7 +28,9 @@ Fine-Tuning Matters and Parallel Decoder Helps
   - Training/evaluation code and configs for CD-FSOD, ODinW-13, and RF100-VL benchmarks.
   - A challenge subproject: [NTIRE 2026 CDFSOD Challenge](./NTIRE%202026%20CDFSOD%20Challenge%20/README.md), including pseudo-label annotation strategy and challenge-oriented pipeline details.
 
-
+<p align="center">
+<img src="./assets/hed.png" width="90%" alt="HED figure">
+</p>
 
 ---
 
