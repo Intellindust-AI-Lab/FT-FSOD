@@ -86,6 +86,9 @@ Refs: [runner.py#L698](https://github.com/open-mmlab/mmengine/blob/main/mmengine
 - **Create CD-Mixed test set:** `bash create_cdmixed_set.sh`
 - **CD-Mixed evaluation (1/5/10-shot):** `bash run_mmgdinob_eval_cdmixed.sh`
 
+#### 4) Training logs for CD-FSOD, OdinW-13 and RF100-VL FSOD benchmarks are [here](https://drive.google.com/drive/folders/1-WLzpAvWg9ZA1PX-YIVII0Fv1jmtxZ7w?usp=drive_link)
+
+
 ## 🏁 NTIRE 2026 CDFSOD Challenge
 
 Challenge materials and instructions are in the same repository: [NTIRE 2026 CDFSOD Challenge](./NTIRE%202026%20CDFSOD%20Challenge%20/README.md).  
