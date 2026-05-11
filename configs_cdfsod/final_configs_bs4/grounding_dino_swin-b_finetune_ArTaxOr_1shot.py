@@ -83,7 +83,7 @@ train_dataloader = dict(
         type='CocoDataset',
         data_root=data_root,
         metainfo=metainfo,
-        ann_file=f'annotations/1_shot_converted.json',
+        ann_file=f'annotations/1_shot.json',
         data_prefix=dict(img='train/'),
         return_classes=True,
         filter_cfg=dict(filter_empty_gt=False, min_size=32),
