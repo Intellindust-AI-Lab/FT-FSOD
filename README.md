@@ -67,10 +67,11 @@ Refs: [runner.py#L698](https://github.com/open-mmlab/mmengine/blob/main/mmengine
 
 ## 📍 Fine-tuning on Benchmarks
 
-#### 1) Download bert-base-uncased, pre-trained weights and train models
+#### 1) Download bert-base-uncased, pre-trained weights and datasets
 
-- Download bert-base-uncased and nltk_data following this [instruction](bert-base-uncased)
+- Download bert-base-uncased and nltk_data following this [instruction](https://github.com/open-mmlab/mmdetection/blob/main/configs/mm_grounding_dino/usage.md#instructions)
 - Download pre-trained weight from: [MMGDINO-B](https://download.openmmlab.com/mmdetection/v3.0/mm_grounding_dino/grounding_dino_swin-b_pretrain_all/grounding_dino_swin-b_pretrain_all-f9818a7c.pth) and [MMGDINO-L](https://download.openmmlab.com/mmdetection/v3.0/mm_grounding_dino/grounding_dino_swin-l_pretrain_all/grounding_dino_swin-l_pretrain_all-56d69e78.pth)
+- Download the your target few-shot datasets according to [RF100-VL benchmark](https://github.com/roboflow/rf100-vl), [CD-FSOD benchmark](https://github.com/lovelyqian/CDFSOD-benchmark) and [OdinW-13 benchmark](https://github.com/microsoft/GLIP).
 - Adjust the dataset path and pre-trained weight path in `src_path.py`
 
 #### 2) Run the following scripts to fine-tune the models on various benchmarks
