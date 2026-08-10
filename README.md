@@ -3,6 +3,7 @@
 <p align="center">
   <a href="https://intellindust-ai-lab.github.io/projects/FT-FSOD/"><img src="https://img.shields.io/badge/Webpage-FT--FSOD-blue.svg" alt="Webpage"></a>
   <a href="https://arxiv.org/abs/2603.28182"><img src="https://img.shields.io/badge/arXiv-2603.28182-b31b1b.svg" alt="arXiv"></a>
+  <a href="https://huggingface.co/Xuanlong/FT-FSOD-CD-FSOD"><img src="https://img.shields.io/badge/Hugging%20Face-Checkpoints-yellow.svg" alt="Hugging Face Checkpoints"></a>
   <a href="./LICENSE"><img src="https://img.shields.io/badge/License-Apache%202.0-green.svg" alt="License"></a>
 </p>
 
@@ -93,6 +94,10 @@ Refs: [runner.py#L698](https://github.com/open-mmlab/mmengine/blob/main/mmengine
 - **CD-Mixed evaluation (1/5/10-shot):** `bash run_mmgdinob_eval_cdmixed.sh`
 
 #### 4) Training logs for CD-FSOD, OdinW-13 and RF100-VL FSOD benchmarks are [here](https://drive.google.com/drive/folders/1-WLzpAvWg9ZA1PX-YIVII0Fv1jmtxZ7w?usp=drive_link)
+
+#### 5) To reproduce the CD-FSOD results reported in the paper without fine-tuning from scratch:
+- Download our fine-tuned Swin-B checkpoints from [Hugging Face](https://huggingface.co/Xuanlong/FT-FSOD-CD-FSOD). The checkpoints cover six target datasets under the 1/5/10-shot settings.
+- Adjust the paths in `run_mmgdinob_traineval_cdfsod.sh` and comment the line 29, 60, 91 in the script (to skip the training).
 
 
 ## 🏁 NTIRE 2026 CDFSOD Challenge
