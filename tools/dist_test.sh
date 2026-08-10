@@ -5,6 +5,7 @@ CHECKPOINT=$2
 GPUS=$3
 PORT_NUM=$4
 CUDA_VISIBLE_DEVICES=$5
+EXTRA_ARGS=("${@:6}")
 NNODES=${NNODES:-1}
 NODE_RANK=${NODE_RANK:-0}
 PORT=${PORT:-$PORT_NUM}
@@ -20,4 +21,5 @@ python -m torch.distributed.launch \
     $(dirname "$0")/test.py \
     $CONFIG \
     $CHECKPOINT \
-    --launcher pytorch
+    --launcher pytorch \
+    "${EXTRA_ARGS[@]}"

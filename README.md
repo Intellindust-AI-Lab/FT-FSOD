@@ -32,6 +32,11 @@
 <img src="./assets/hed.png" width="90%" alt="HED figure">
 </p>
 
+- Results on CD-FSOD benchmark
+<p align="center">
+<img src="./assets/cdfsod.png" width="90%" alt="HED figure">
+</p>
+
 ---
 
 ## 📦 Installation
